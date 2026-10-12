@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách thuốc</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Danh sách thuốc</h1>
+
+        <p>Quản lý thông tin các loại thuốc</p>
+
+        <a class="button" href="/medicines/add">
+            + Thêm thuốc
+        </a>
+
+        <a class="button" href="/medicines/search-form">
+            🔍 Tìm kiếm
+        </a>
+
+        <a class="button button-secondary" href="/">
+            Trang chủ
+        </a>
+
+    </div>
+
+    <p class="message"
+       th:if="${message != null && message != 'EMPTY'}"
+       th:text="${message}">
+    </p>
+
+    <div class="empty" th:if="${medicines.isEmpty()}">
+        Không tìm thấy thuốc.
+    </div>
+
+    <table th:if="${!medicines.isEmpty()}">
+
+        <tr>
+            <th>Mã thuốc</th>
+            <th>Tên thuốc</th>
+            <th>Giá</th>
+            <th>Dạng thuốc</th>
+            <th>Công dụng</th>
+            <th>Thao tác</th>
+        </tr>
+
+        <tr th:each="medicine : ${medicines}">
+
+            <td th:text="${medicine.id}"></td>
+
+            <td th:text="${medicine.name}"></td>
+
+            <td th:text="${medicine.price}"></td>
+
+            <td th:text="${medicine.type}"></td>
+
+            <td th:text="${medicine.usage.name}"></td>
+
+            <td>
+
+                <a class="button"
+                   th:href="@{/medicines/edit(id=${medicine.id})}">
+                    Sửa
+                </a>
+
+                <a class="button button-danger"
+                   th:href="@{/medicines/delete(id=${medicine.id})}"
+                   onclick="return confirm('Bạn có chắc muốn xóa thuốc này không?')">
+                    Xóa
+                </a>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>

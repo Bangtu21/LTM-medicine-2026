@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách công dụng</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+
+        <h1>Danh sách công dụng</h1>
+
+        <p>Quản lý các công dụng của thuốc</p>
+
+        <a class="button" href="/usages/add">
+            + Thêm công dụng
+        </a>
+
+        <a class="button" href="/usages/search-form">
+            🔍 Tìm kiếm
+        </a>
+
+        <a class="button button-secondary" href="/">
+            Trang chủ
+        </a>
+
+    </div>
+
+    <p class="message"
+       th:if="${message != null && message != 'EMPTY'}"
+       th:text="${message}">
+    </p>
+
+    <div class="empty" th:if="${usages.isEmpty()}">
+        Không tìm thấy công dụng.
+    </div>
+
+    <table th:if="${!usages.isEmpty()}">
+
+        <tr>
+            <th>Mã công dụng</th>
+            <th>Tên công dụng</th>
+            <th>Mô tả</th>
+            <th>Thao tác</th>
+        </tr>
+
+        <tr th:each="usage : ${usages}">
+
+            <td th:text="${usage.id}"></td>
+
+            <td th:text="${usage.name}"></td>
+
+            <td th:text="${usage.description}"></td>
+
+            <td>
+
+                <a class="button"
+                   th:href="@{/usages/edit(id=${usage.id})}">
+                    Sửa
+                </a>
+
+                <a class="button button-danger"
+                   th:href="@{/usages/delete(id=${usage.id})}"
+                   onclick="return confirm('Bạn có chắc muốn xóa công dụng này không?')">
+                    Xóa
+                </a>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+</html>

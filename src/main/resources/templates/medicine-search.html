@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tìm kiếm thuốc</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>Tìm kiếm thuốc</h1>
+        <p>Tìm thuốc theo giá, dạng thuốc hoặc công dụng</p>
+    </div>
+
+    <div class="form-box">
+
+        <form action="/medicines/search" method="get">
+
+            <div class="form-group">
+
+                <label>Giá thuốc</label>
+
+                <input type="number"
+                       name="price"
+                       step="0.01"
+                       placeholder="Ví dụ: 15000">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Dạng thuốc</label>
+
+                <input type="text"
+                       name="type"
+                       placeholder="Ví dụ: Viên, Siro...">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Mã công dụng</label>
+
+                <input type="text"
+                       name="usageId"
+                       placeholder="Ví dụ: U01">
+
+            </div>
+
+            <button class="button" type="submit">
+                🔍 Tìm kiếm
+            </button>
+
+            <a class="button button-secondary"
+               href="/medicines">
+                Quay lại
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
